@@ -1,22 +1,22 @@
-import { Suspense } from 'react';
-import { unstable_noStore as noStore } from 'next/cache';
-import Link from 'next/link';
-import Image from 'next/image';
-import smashing from 'public/images/home/smashing.jpg';
-import summit from 'public/images/home/summit.jpg';
-import reactathon from 'public/images/home/reactathon.jpg';
-import ship from 'public/images/home/ship.jpg';
-import filming from 'public/images/home/filming.jpg';
-import meetups from 'public/images/home/meetups.jpg';
-import vercel from 'public/images/home/vercel.jpg';
-import avatar from 'app/avatar.jpg';
-import ViewCounter from 'app/blog/view-counter';
-import { PreloadResources } from 'app/preload';
+import { Suspense } from "react"
+import { unstable_noStore as noStore } from "next/cache"
+import Link from "next/link"
+import Image from "next/image"
+import smashing from "public/images/home/smashing.jpg"
+import summit from "public/images/home/summit.jpg"
+import reactathon from "public/images/home/reactathon.jpg"
+import ship from "public/images/home/ship.jpg"
+import filming from "public/images/home/filming.jpg"
+import meetups from "public/images/home/meetups.jpg"
+import vercel from "public/images/home/vercel.jpg"
+import avatar from "app/avatar.jpg"
+import ViewCounter from "app/blog/view-counter"
+import { PreloadResources } from "app/preload"
 import {
   getLeeYouTubeSubs,
   getVercelYouTubeSubs,
   getViewsCount,
-} from 'app/db/queries';
+} from "app/db/queries"
 
 function Badge(props) {
   return (
@@ -25,7 +25,7 @@ function Badge(props) {
       target="_blank"
       className="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100 no-underline"
     />
-  );
+  )
 }
 
 function ArrowIcon() {
@@ -42,7 +42,7 @@ function ArrowIcon() {
         fill="currentColor"
       />
     </svg>
-  );
+  )
 }
 
 function ChannelLink({ img, link, name }) {
@@ -84,23 +84,23 @@ function ChannelLink({ img, link, name }) {
         </div>
       </a>
     </div>
-  );
+  )
 }
 
 async function Subs({ name }: { name: string }) {
-  noStore();
-  let subscribers;
-  if (name === '@leerob') {
-    subscribers = await getLeeYouTubeSubs();
+  noStore()
+  let subscribers
+  if (name === "@leerob") {
+    subscribers = await getLeeYouTubeSubs()
   } else {
-    subscribers = await getVercelYouTubeSubs();
+    subscribers = await getVercelYouTubeSubs()
   }
 
   return (
     <p className="text-neutral-600 dark:text-neutral-400">
       {subscribers} subscribers
     </p>
-  );
+  )
 }
 
 function BlogLink({ slug, name }) {
@@ -123,12 +123,12 @@ function BlogLink({ slug, name }) {
         </div>
       </a>
     </div>
-  );
+  )
 }
 
 async function Views({ slug }: { slug: string }) {
-  let views = await getViewsCount();
-  return <ViewCounter allViews={views} slug={slug} />;
+  let views = await getViewsCount()
+  return <ViewCounter allViews={views} slug={slug} />
 }
 
 export default function Page() {
@@ -252,7 +252,7 @@ export default function Page() {
           and workshops. You can watch some of my favorites below.
         </p>
       </div>
-      <div className="my-8 flex flex-col sm:flex-row space-x-0 sm:space-x-4 space-y-4 sm:space-y-0 w-full">
+      {/* <div className="my-8 flex flex-col sm:flex-row space-x-0 sm:space-x-4 space-y-4 sm:space-y-0 w-full">
         <ChannelLink
           img={avatar}
           name="@leerob"
@@ -263,7 +263,7 @@ export default function Page() {
           name="@vercel"
           link="https://www.youtube.com/@vercelhq"
         />
-      </div>
+      </div> */}
       <div className="prose prose-neutral dark:prose-invert">
         <p>
           Over the past decade, I've written content on my blog and newsletter.
@@ -325,7 +325,7 @@ export default function Page() {
       </div>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          I've worked with and advised companies on developer marketing,{' '}
+          I've worked with and advised companies on developer marketing,{" "}
           <Link href="/blog/devrel-at-vercel">developer relations</Link>,
           building open-source communities, product-led growth, and more.
         </p>
@@ -355,5 +355,5 @@ export default function Page() {
         </li>
       </ul>
     </section>
-  );
+  )
 }
