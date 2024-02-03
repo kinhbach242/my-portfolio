@@ -3,7 +3,7 @@ import { unstable_noStore as noStore } from "next/cache"
 import Link from "next/link"
 import Image from "next/image"
 import smashing from "public/images/home/smashing.jpg"
-import summit from "public/images/home/summit.jpg"
+// import summit from "public/images/home/summit.jpg"
 import reactathon from "public/images/home/reactathon.jpg"
 import ship from "public/images/home/ship.jpg"
 import filming from "public/images/home/filming.jpg"
@@ -12,6 +12,15 @@ import vercel from "public/images/home/vercel.jpg"
 import avatar from "app/avatar.jpg"
 import ViewCounter from "app/blog/view-counter"
 import { PreloadResources } from "app/preload"
+import df_logo from "public/df_logo.svg"
+import screenCode from "public/images/home/screen-code.jpg"
+import screenCode2 from "public/images/home/screen-code-2.jpg"
+import meWithTeam1 from "public/images/home/me-with-team1.jpeg"
+import meWithDF from "public/images/home/me-with-df.jpg"
+import me1 from "public/images/home/me1.jpeg"
+import me2 from "public/images/home/me2.jpg"
+import meWithYep from "public/images/home/me-with-yep.jpg"
+
 import {
   getLeeYouTubeSubs,
   getVercelYouTubeSubs,
@@ -136,27 +145,21 @@ export default function Page() {
     <section>
       <PreloadResources />
       <h1 className="font-medium text-2xl mb-8 tracking-tighter">
-        hey, I'm leerob 👋
+        hey, I'm kinhbach 👋
       </h1>
       <p className="prose prose-neutral dark:prose-invert">
-        {`I'm a frontend developer, optimist, and community builder. I currently `}
-        <Link href="/work">work</Link>
-        {` as the VP of Product at `}
+        {`I'm a frontend developer. I currently `}
+        <Link href="/work">working</Link>
+        {` at `}
         <span className="not-prose">
-          <Badge href="https://vercel.com/home">
-            <svg
-              width="13"
-              height="11"
-              role="img"
-              aria-label="Vercel logo"
-              className="inline-flex mr-1"
-            >
-              <use href="/sprite.svg#vercel" />
-            </svg>
-            Vercel
+          <Badge href="https://digitalfortress.dev">
+            <span className="w-4 h-4 mr-1">
+              <Image src={df_logo} alt="df-logo" width={20} height={20} />
+            </span>
+            Digital Fortress
           </Badge>
         </span>
-        {`, where I help teach the `}
+        {`, where I work on projects that use `}
         <Badge href="https://nextjs.org">
           <img
             alt="Next.js logomark"
@@ -167,7 +170,7 @@ export default function Page() {
           />
           Next.js
         </Badge>
-        {` community, an open-source web framework built with `}
+        {", "}
         <Badge href="https://react.dev">
           <svg
             width="14"
@@ -186,7 +189,7 @@ export default function Page() {
         <div className="relative h-40 mb-4">
           <Image
             alt="Me speaking on stage at React Summit about the future of Next.js"
-            src={summit}
+            src={screenCode}
             fill
             sizes="(max-width: 768px) 213px, 33vw"
             priority
@@ -196,7 +199,7 @@ export default function Page() {
         <div className="relative h-80 mb-4 sm:mb-0">
           <Image
             alt="Me, Lydia, and Delba filming the Next.js Conf keynote"
-            src={filming}
+            src={me2}
             fill
             sizes="(max-width: 768px) 213px, 33vw"
             priority
@@ -206,7 +209,7 @@ export default function Page() {
         <div className="relative h-40 sm:h-80 sm:mb-4">
           <Image
             alt="Me standing on stage at Reactathon delivering the keynote"
-            src={reactathon}
+            src={me1}
             fill
             sizes="(max-width: 768px) 213px, 33vw"
             priority
@@ -216,7 +219,7 @@ export default function Page() {
         <div className="relative h-40 mb-4 sm:mb-0">
           <Image
             alt="Me standing on stage at SmashingConf giving a talk about my optimism for the web"
-            src={smashing}
+            src={meWithTeam1}
             fill
             sizes="(max-width: 768px) 213px, 33vw"
             priority
@@ -226,7 +229,7 @@ export default function Page() {
         <div className="relative h-40 mb-4">
           <Image
             alt="Me and Guillermo Rauch on stage for Vercel Ship, answering questions from the Next.js community"
-            src={ship}
+            src={meWithDF}
             fill
             sizes="(max-width: 768px) 213px, 33vw"
             priority
@@ -236,7 +239,7 @@ export default function Page() {
         <div className="relative h-80">
           <Image
             alt="My badge on top of a pile of badges from a Vercel meetup we held"
-            src={meetups}
+            src={meWithYep}
             fill
             sizes="(min-width: 768px) 213px, 33vw"
             priority
