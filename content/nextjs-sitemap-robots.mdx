@@ -1,7 +1,7 @@
 ---
-title: 'Create a Dynamic Sitemap with Next.js'
-publishedAt: '2020-03-02'
-summary: 'Learn how to add a dynamic sitemap to your Next.js project, along with a robots.txt file for optimal SEO.'
+title: "Create a Dynamic Sitemap with Next.js"
+publishedAt: "2020-03-02"
+summary: "Learn how to add a dynamic sitemap to your Next.js project, along with a robots.txt file for optimal SEO."
 ---
 
 To improve your Search Engine Optimization (SEO), you might need to add a sitemap or `robots.txt` file to your Next.js site.
@@ -20,10 +20,10 @@ This is a basic `.xml` file defining the content of your site. Here's a simple e
 ```xml
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-      <loc>https://leerob.io</loc>
+      <loc>https://kinhdev.id.vn/</loc>
   </url>
   <url>
-      <loc>https://leerob.io/blog</loc>
+      <loc>https://kinhdev.id.vn/blog</loc>
   </url>
 </urlset>
 ```
@@ -47,20 +47,20 @@ Next, we can create a Node script at `scripts/generate-sitemap.mjs`.
 This file will dynamically build a sitemap based on your `/pages` directory.
 
 ```js
-import { writeFileSync } from 'fs';
-import { globby } from 'globby';
-import prettier from 'prettier';
+import { writeFileSync } from "fs"
+import { globby } from "globby"
+import prettier from "prettier"
 
 async function generate() {
-  const prettierConfig = await prettier.resolveConfig('./.prettierrc.js');
+  const prettierConfig = await prettier.resolveConfig("./.prettierrc.js")
   const pages = await globby([
-    'pages/*.js',
-    'data/**/*.mdx',
-    '!data/*.mdx',
-    '!pages/_*.js',
-    '!pages/api',
-    '!pages/404.js',
-  ]);
+    "pages/*.js",
+    "data/**/*.mdx",
+    "!data/*.mdx",
+    "!pages/_*.js",
+    "!pages/api",
+    "!pages/404.js",
+  ])
 
   const sitemap = `
     <?xml version="1.0" encoding="UTF-8"?>
@@ -68,32 +68,32 @@ async function generate() {
         ${pages
           .map((page) => {
             const path = page
-              .replace('pages', '')
-              .replace('data', '')
-              .replace('.js', '')
-              .replace('.mdx', '');
-            const route = path === '/index' ? '' : path;
+              .replace("pages", "")
+              .replace("data", "")
+              .replace(".js", "")
+              .replace(".mdx", "")
+            const route = path === "/index" ? "" : path
 
             return `
               <url>
                   <loc>${`https://leerob.io${route}`}</loc>
               </url>
-            `;
+            `
           })
-          .join('')}
+          .join("")}
     </urlset>
-    `;
+    `
 
   const formatted = prettier.format(sitemap, {
     ...prettierConfig,
-    parser: 'html',
-  });
+    parser: "html",
+  })
 
   // eslint-disable-next-line no-sync
-  writeFileSync('public/sitemap.xml', formatted);
+  writeFileSync("public/sitemap.xml", formatted)
 }
 
-generate();
+generate()
 ```
 
 Finally, add `postbuild` script in your `package.json` to run this script after `next build` completes.
@@ -120,29 +120,29 @@ but the idea is the same. To demonstrate, I've created an example using placehol
 First, create a new file at `pages/sitemap.xml.js`.
 
 ```js
-import React from 'react';
+import React from "react"
 
 class Sitemap extends React.Component {
   static async getInitialProps({ res }) {
-    const request = await fetch(EXTERNAL_DATA_URL);
-    const posts = await request.json();
+    const request = await fetch(EXTERNAL_DATA_URL)
+    const posts = await request.json()
 
-    res.setHeader('Content-Type', 'text/xml');
-    res.write(createSitemap(posts));
-    res.end();
+    res.setHeader("Content-Type", "text/xml")
+    res.write(createSitemap(posts))
+    res.end()
   }
 }
 
-export default Sitemap;
+export default Sitemap
 ```
 
 When the route `/sitemap.xml` is initially loaded, we will fetch posts from an external data source
 and then write an XML file as the response.
 
 ```js
-import React from 'react';
+import React from "react"
 
-const EXTERNAL_DATA_URL = 'https://jsonplaceholder.typicode.com/posts';
+const EXTERNAL_DATA_URL = "https://jsonplaceholder.typicode.com/posts"
 
 const createSitemap = (posts) => `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -152,24 +152,24 @@ const createSitemap = (posts) => `<?xml version="1.0" encoding="UTF-8"?>
                 <url>
                     <loc>${`${EXTERNAL_DATA_URL}/${id}`}</loc>
                 </url>
-            `;
+            `
           })
-          .join('')}
+          .join("")}
     </urlset>
-    `;
+    `
 
 class Sitemap extends React.Component {
   static async getInitialProps({ res }) {
-    const request = await fetch(EXTERNAL_DATA_URL);
-    const posts = await request.json();
+    const request = await fetch(EXTERNAL_DATA_URL)
+    const posts = await request.json()
 
-    res.setHeader('Content-Type', 'text/xml');
-    res.write(createSitemap(posts));
-    res.end();
+    res.setHeader("Content-Type", "text/xml")
+    res.write(createSitemap(posts))
+    res.end()
   }
 }
 
-export default Sitemap;
+export default Sitemap
 ```
 
 Here's a condensed example of the output.
