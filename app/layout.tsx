@@ -10,7 +10,7 @@ import { SandpackCSS } from "./blog/[slug]/sandpack"
 export const metadata: Metadata = {
   metadataBase: new URL("https://leerob.io"),
   title: {
-    default: "Kinh Bach",
+    default: "Kinh Bach - Developer",
     template: "%s | Kinh Bach",
   },
   description: "Developer.",

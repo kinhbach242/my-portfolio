@@ -1,31 +1,27 @@
-import { Suspense } from "react"
 import { unstable_noStore as noStore } from "next/cache"
-import Link from "next/link"
 import Image from "next/image"
-import smashing from "public/images/home/smashing.jpg"
+import Link from "next/link"
+import { Suspense } from "react"
 // import summit from "public/images/home/summit.jpg"
-import reactathon from "public/images/home/reactathon.jpg"
-import ship from "public/images/home/ship.jpg"
-import filming from "public/images/home/filming.jpg"
-import meetups from "public/images/home/meetups.jpg"
-import vercel from "public/images/home/vercel.jpg"
-import avatar from "app/avatar.jpg"
 import ViewCounter from "app/blog/view-counter"
 import { PreloadResources } from "app/preload"
 import df_logo from "public/df_logo.svg"
-import screenCode from "public/images/home/screen-code.jpg"
-import screenCode2 from "public/images/home/screen-code-2.jpg"
-import meWithTeam1 from "public/images/home/me-with-team1.jpeg"
+import df_logo_light from "public/df_logo_light.png"
+
+import macbook from "public/images/home/macbook.jpg"
 import meWithDF from "public/images/home/me-with-df.jpg"
+import meWithTeam1 from "public/images/home/me-with-team1.jpeg"
 import me1 from "public/images/home/me1.jpeg"
-import me2 from "public/images/home/me2.jpg"
-import meWithYep from "public/images/home/me-with-yep.jpg"
+import me2 from "public/images/home/me2.jpeg"
+import screenCode from "public/images/home/screen-code.jpg"
 
 import {
   getLeeYouTubeSubs,
   getVercelYouTubeSubs,
   getViewsCount,
 } from "app/db/queries"
+import Confetti from "./components/confetti"
+import BlurImage from "./components/blur-image"
 
 function Badge(props) {
   return (
@@ -144,24 +140,35 @@ export default function Page() {
   return (
     <section>
       <PreloadResources />
-      <h1 className="font-medium text-2xl mb-8 tracking-tighter">
+      <div className=" font-medium text-2xl mb-8 tracking-tighter flex gap-2 items-center flex-col sm:flex-row">
         hey, I'm kinhbach 👋
-      </h1>
+        <div className="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100 no-underline">
+          <Confetti />
+        </div>
+      </div>
       <p className="prose prose-neutral dark:prose-invert">
         {`I'm a frontend developer. I currently `}
         <Link href="/work">working</Link>
         {` at `}
         <span className="not-prose">
           <Badge href="https://digitalfortress.dev">
-            <span className="w-4 h-4 mr-1">
-              <Image src={df_logo} alt="df-logo" width={20} height={20} />
+            <span className="w-4 h-4 mr-1 dark:block hidden">
+              <BlurImage src={df_logo} alt="df-logo" width={20} height={20} />
             </span>
-            Digital Fortress
+            <span className="w-4 h-4 mr-1 dark:hidden block">
+              <BlurImage
+                src={df_logo_light}
+                alt="df-logo"
+                width={20}
+                height={20}
+              />
+            </span>
+            Digital <span className="text-red-500 ml-1">Fortress</span>
           </Badge>
         </span>
         {`, where I work on projects that use `}
         <Badge href="https://nextjs.org">
-          <img
+          <BlurImage
             alt="Next.js logomark"
             src="/next-logo.svg"
             className="!mr-1"
@@ -187,7 +194,7 @@ export default function Page() {
       </p>
       <div className="columns-2 sm:columns-3 gap-4 my-8">
         <div className="relative h-40 mb-4">
-          <Image
+          <BlurImage
             alt="Me speaking on stage at React Summit about the future of Next.js"
             src={screenCode}
             fill
@@ -197,9 +204,9 @@ export default function Page() {
           />
         </div>
         <div className="relative h-80 mb-4 sm:mb-0">
-          <Image
+          <BlurImage
             alt="Me, Lydia, and Delba filming the Next.js Conf keynote"
-            src={me2}
+            src={macbook}
             fill
             sizes="(max-width: 768px) 213px, 33vw"
             priority
@@ -207,7 +214,7 @@ export default function Page() {
           />
         </div>
         <div className="relative h-40 sm:h-80 sm:mb-4">
-          <Image
+          <BlurImage
             alt="Me standing on stage at Reactathon delivering the keynote"
             src={me1}
             fill
@@ -217,7 +224,7 @@ export default function Page() {
           />
         </div>
         <div className="relative h-40 mb-4 sm:mb-0">
-          <Image
+          <BlurImage
             alt="Me standing on stage at SmashingConf giving a talk about my optimism for the web"
             src={meWithTeam1}
             fill
@@ -227,7 +234,7 @@ export default function Page() {
           />
         </div>
         <div className="relative h-40 mb-4">
-          <Image
+          <BlurImage
             alt="Me and Guillermo Rauch on stage for Vercel Ship, answering questions from the Next.js community"
             src={meWithDF}
             fill
@@ -237,9 +244,9 @@ export default function Page() {
           />
         </div>
         <div className="relative h-80">
-          <Image
+          <BlurImage
             alt="My badge on top of a pile of badges from a Vercel meetup we held"
-            src={meWithYep}
+            src={me2}
             fill
             sizes="(min-width: 768px) 213px, 33vw"
             priority
@@ -249,10 +256,9 @@ export default function Page() {
       </div>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          I create educational content for developers, teaching them about web
-          development, JavaScript and TypeScript, React and Next.js, and more.
-          This comes in all forms: blog posts, videos, tweets, conference talks,
-          and workshops. You can watch some of my favorites below.
+          With expertise in JavaScript and TypeScript, passionate about using
+          technologies like Next.js, React.js not only optimizes performance but
+          also creates flexible and maintainable web applications.
         </p>
       </div>
       {/* <div className="my-8 flex flex-col sm:flex-row space-x-0 sm:space-x-4 space-y-4 sm:space-y-0 w-full">
@@ -269,91 +275,78 @@ export default function Page() {
       </div> */}
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          Over the past decade, I've written content on my blog and newsletter.
-          I try to keep things simple. You'll find writing about technologies
-          I'm interested in at the time, or how I'm learning and growing in my
-          career, sharing knowledge along the way.
+          With a logical mindset and refined design skills, I always seek ways
+          to integrate unique features and ideas into my projects. Prioritizing
+          the development of user-friendly, easy-to-use, and aesthetically
+          pleasing interfaces is always my top priority. With each project, I
+          always focus on creating highly interactive and user-friendly
+          interfaces.
         </p>
       </div>
-      <div className="my-8 flex flex-col space-y-4 w-full">
+      {/* <div className="my-8 flex flex-col space-y-4 w-full">
         <BlogLink
           name="What Makes A Great Developer Experience?"
           slug="developer-experience-examples"
         />
         <BlogLink name="What is Developer Relations?" slug="devrel-at-vercel" />
         <BlogLink name="The Story of Heroku" slug="heroku" />
-      </div>
+      </div> */}
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          I invest small angel checks into early stage startups building tools
-          for developers.
+          Throughout my journey as a front-end developer, I've honed my skills
+          with a variety of powerful tools and technologies to bring ideas to
+          life. Here are some of the key tools in my toolkit:
         </p>
       </div>
       <div className="my-8 flex flex-row space-x-2 w-full h-14 overflow-x-auto">
         <div className="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded flex items-center justify-between px-3 py-4">
-          <a href="https://linear.app">
-            <svg width="78" height="20" role="img" aria-label="Linear logo">
-              <use href="/sprite.svg#linear" />
+          <a href="https://tailwindcss.com/">
+            <svg
+              width="100"
+              height="20"
+              role="img"
+              aria-label="TailwindCss logo"
+            >
+              <use href="/sprite.svg#tailwindcss" />
             </svg>
           </a>
         </div>
         <div className="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded flex items-center justify-between px-3 py-4">
-          <a href="https://supabase.com">
-            <svg width="100" height="19" role="img" aria-label="Supabase logo">
-              <use href="/sprite.svg#supabase" />
+          <a href="https://ui.shadcn.com/">
+            <svg width="30" height="19" role="img" aria-label="ShadCn logo">
+              <use href="/sprite.svg#shadcn" />
             </svg>
           </a>
+          <p className="font-bold">shadcn/ui</p>
         </div>
         <div className="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded flex items-center justify-between px-3 py-4">
-          <a href="https://www.makeswift.com/blog/makeswift-is-joining-bigcommerce">
-            <svg width="96" height="19" role="img" aria-label="Makeswift logo">
-              <use href="/sprite.svg#makeswift" />
+          <a href="https://nextui.org/">
+            <svg width="30" height="19" role="img" aria-label="NextUI logo">
+              <use href="/sprite.svg#nextui" />
             </svg>
           </a>
+          <p className="font-normal">NextUI</p>
         </div>
         <div className="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded flex items-center justify-between px-3 py-4">
-          <a href="https://resend.com">
-            <svg width="70" height="17" role="img" aria-label="Resend logo">
-              <use href="/sprite.svg#resend" />
+          <a href="https://nextui.org/">
+            <svg width="30" height="19" role="img" aria-label="GitHub logo">
+              <use href="/sprite.svg#github" />
             </svg>
           </a>
-        </div>
-        <div className="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded flex items-center justify-between px-3 py-4">
-          <a href="https://bun.sh">
-            <svg width="35" height="27" role="img" aria-label="Bun logo">
-              <use href="/sprite.svg#bun" />
-            </svg>
-          </a>
+          <p className="font-semibold ">GitHub</p>
         </div>
       </div>
-      <div className="prose prose-neutral dark:prose-invert">
-        <p>
-          I've worked with and advised companies on developer marketing,{" "}
-          <Link href="/blog/devrel-at-vercel">developer relations</Link>,
-          building open-source communities, product-led growth, and more.
-        </p>
-      </div>
+
       <ul className="flex flex-col md:flex-row mt-8 space-x-0 md:space-x-4 space-y-2 md:space-y-0 font-sm text-neutral-600 dark:text-neutral-300">
         <li>
           <a
             className="flex items-center hover:text-neutral-800 dark:hover:text-neutral-100 transition-all"
             rel="noopener noreferrer"
             target="_blank"
-            href="https://twitter.com/leeerob"
+            href="https://www.linkedin.com/in/kinhdev24/"
           >
             <ArrowIcon />
-            <p className="h-7 ml-2">follow me</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center hover:text-neutral-800 dark:hover:text-neutral-100 transition-all"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://leerob.substack.com"
-          >
-            <ArrowIcon />
-            <p className="h-7 ml-2">get email updates</p>
+            <p className="h-7 ml-2">connect with me</p>
           </a>
         </li>
       </ul>
