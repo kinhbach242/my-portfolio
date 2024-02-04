@@ -18,7 +18,7 @@ export default function Confetti() {
   }
   return (
     <>
-      <button onClick={onOnce}>Press to Happy New Year</button>
+      <button onClick={onOnce}>Press to Happy New Year 🎊</button>
       <Fireworks onInit={onInit} />
     </>
   )
