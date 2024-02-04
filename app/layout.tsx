@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     siteName: "Kinh Bach",
     locale: "en_US",
     type: "website",
+    images: "./opengraph-image.jpg",
   },
   robots: {
     index: true,
