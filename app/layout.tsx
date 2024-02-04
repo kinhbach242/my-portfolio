@@ -8,7 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { SandpackCSS } from "./blog/[slug]/sandpack"
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://leerob.io"),
+  metadataBase: new URL("https://kinhdev.id.vn"),
   title: {
     default: "Kinh Bach - Developer",
     template: "%s | Kinh Bach",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kinh Bach",
     description: "Developer.",
-    url: "https://leerob.io",
+    url: "https://kinhdev.id.vn",
     siteName: "Kinh Bach",
     locale: "en_US",
     type: "website",
