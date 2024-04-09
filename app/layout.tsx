@@ -6,6 +6,7 @@ import { Navbar } from "./components/nav"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { SandpackCSS } from "./blog/[slug]/sandpack"
+import Script from "next/script"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kinhdev.id.vn"),
@@ -72,6 +73,11 @@ export default function RootLayout({
           <SpeedInsights />
         </main>
       </body>
+      <Script
+        async
+        defer
+        src="https://tools.luckyorange.com/core/lo.js?site-id=297b4235"
+      ></Script>
     </html>
   )
 }
